@@ -19,6 +19,7 @@ namespace :gems do
     rm_rf "vendor/#{target_dir}"
     
     chdir File.join(RAILS_ROOT, 'vendor') do
+      target_dir = File.expand_path(target_dir, File.join(RAILS_ROOT, 'vendor'))
       mkdir_p target_dir
       Gem::Installer.new(path).unpack(target_dir)
       puts "Unpacked #{gem_name} #{version} to '#{target_dir}'"
